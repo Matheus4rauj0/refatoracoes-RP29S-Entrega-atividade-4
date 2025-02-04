@@ -1,0 +1,6 @@
+ O que foi melhorado:
+
+Extract Method → Separei funções pequenas como createTask, createTaskHTML e filterTasks para deixar o código mais modular.
+Extract Class → Criei a classe TaskManager para encapsular toda a lógica, reduzindo poluição no escopo global.
+
+as alterações foram feitas no arquivo main.js e o projeto original esta no seguinte Github: https://github.com/GabrielDona/Lista-de-tarefas.git

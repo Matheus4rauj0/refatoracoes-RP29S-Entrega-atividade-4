@@ -1,85 +1,75 @@
-// Constantes que obtem o valor dado em seus respectivos campos
-const button = document.querySelector(".button-add-task")
-const input = document.querySelector(".input-task")
-const allList = document.querySelector(".list-task")
+class TaskManager {
+    constructor() {
+        this.button = document.querySelector(".button-add-task");
+        this.input = document.querySelector(".input-task");
+        this.allList = document.querySelector(".list-task");
+        this.myList = [];
+        this.currentFilter = "all";
 
-let myList = []
-// Matriz variável que guarda as tarefas inseridas
+        this.loadTasks();
+        this.button.addEventListener("click", () => this.addTask());
+    }
 
-// Função que adiciona tarefas e emite um alerta caso não digitem nenhum valor na caixa de texto
-function addTask(){
-    if (input.value != ""){
-    myList.push({
-        task: input.value,
-        completed:false
-    })
-    
-    viewTask()
-}else{
-    alert("O campo está vazio, insira uma tarefa.")
-}
-}
-// Função que mostra as tarefas inseridas na página
-function viewTask(){
+    addTask() {
+        if (this.input.value.trim() === "") {
+            alert("O campo está vazio, insira uma tarefa.");
+            return;
+        }
+        
+        this.myList.push(this.createTask(this.input.value));
+        this.updateView();
+    }
 
-    let newLi = ""
+    createTask(task) {
+        return { task, completed: false };
+    }
 
-    // Ação que imprime as tarefas conforme os itens e ordens em que foram adicionados
-    myList.forEach((item, index) => {
-        // Filtro em que divide as tarefas entre "todas", "pendentes" e "completas"
-        if (
-            currentFilter === 'all' ||
-            (currentFilter === 'pending' && !item.completed) ||
-            (currentFilter === 'completed' && item.completed)
-        ) {
-        newLi = newLi + `
-        <li class="task ${item.completed && "done"}">
-                <img src="img/25404.png" alt="check-task" onclick="checkItem(${index})">
-                <p>${item.task}</p>
-                <img class="delete" src="img/126468.png" alt="delete-task" onclick="deleteItem(${index})">
-            </li>
-            `}
-    })
-    // Código que adiciona a seção da nova tarefa inserida na página
+    updateView() {
+        this.allList.innerHTML = this.myList
+            .filter(item => this.filterTasks(item))
+            .map((item, index) => this.createTaskHTML(item, index))
+            .join(" ");
+        
+        localStorage.setItem("list", JSON.stringify(this.myList));
+    }
 
-    allList.innerHTML = newLi
-    // Transforma a lista em que foi adicionada uma nova tarefa como nova "Lista total"
+    createTaskHTML(item, index) {
+        return `
+        <li class="task ${item.completed ? "done" : ""}">
+            <img src="img/25404.png" alt="check-task" onclick="taskManager.toggleTask(${index})">
+            <p>${item.task}</p>
+            <img class="delete" src="img/126468.png" alt="delete-task" onclick="taskManager.deleteTask(${index})">
+        </li>`;
+    }
 
-    localStorage.setItem("list", JSON.stringify(myList))
-    // Guarda a lista atual com as tarefas inseridas no local pagina do naegador
+    deleteTask(index) {
+        this.myList.splice(index, 1);
+        this.updateView();
+    }
 
-}
-// Função para deletar itens
-function deleteItem(index){
-    myList.splice(index, 1)
+    toggleTask(index) {
+        this.myList[index].completed = !this.myList[index].completed;
+        this.updateView();
+    }
 
-    viewTask()
-}
-// Função para marcar os itens como concluídos
-function checkItem(index){
-    myList [index].completed = !myList [index].completed
+    loadTasks() {
+        const storedTasks = localStorage.getItem("list");
+        this.myList = storedTasks ? JSON.parse(storedTasks) : [];
+        this.updateView();
+    }
 
-    viewTask();
-}
-// Função para manter os itens da lista na página mesmo após atualiza-la
-function UpdateTask(){
-    const localStorageTasks = localStorage.getItem("list")
-    // Pega os itens guardados no local da pagina do navegador
+    filterTasks(item) {
+        return (
+            this.currentFilter === "all" ||
+            (this.currentFilter === "pending" && !item.completed) ||
+            (this.currentFilter === "completed" && item.completed)
+        );
+    }
 
-    myList = JSON.parse(localStorageTasks)
-    // Reinsere os itens guardados no local da pagina devolta na lista
-
-    myList = localStorageTasks ? JSON.parse(localStorageTasks) : []
-    
-    viewTask();
+    setFilter(filter) {
+        this.currentFilter = filter;
+        this.updateView();
+    }
 }
 
-let currentFilter = "all";
-
-function filterTasks(filter) {
-    currentFilter = filter;
-    viewTask();
-}
-
-UpdateTask();
-button.addEventListener("click", addTask)
+const taskManager = new TaskManager();
