@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: JetBrains Mono;
+    outline: none;
+}
+
+body{
+    background:url(img/mdf-platte-186943_1280.jpg);
+}
+h1{
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+    font-family: barrio;
+    text-align: center;
+    letter-spacing: 15px;
+    text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.245);
+    padding: 100px 20px 20px 0px;
+}
+.container{
+    background: url(img/folha-do-papel-do-caderno-da-escola-fundo-da-página-do-livro-de-exercício-contexto-alinhado-do-bloco-de-notas-80050988.webp);
+    box-shadow: 1px 4px 15px rgba(0, 0, 0, 0.39);
+    border-radius: 0px 10px 10px 10px;
+    width: 450px;
+    margin: 0px auto 0px;
+    padding: 25px;
+}
+.input-task{
+    border: 1px rgba(0, 0, 0, 0.452) outset;
+    border-radius: 5px;
+    width: 335px;
+    height: 40px;
+    padding-left: 10px;
+}
+.button-add-task{
+    border: 1px rgba(0, 0, 0, 0.452) outset;
+    border-radius: 5px;
+    height: 40px;
+    width: 50px;
+    background-color: rgb(124, 158, 124);
+    font-size: 17px;
+    padding: 0 15px;
+    float: right;
+    cursor: pointer;
+}
+.button-add-task:hover{
+    background-color: rgb(145, 185, 145);
+}
+.button-add-task:active{
+    background-color: rgb(136, 173, 136);
+}
+.list-task{
+    width: 100%;
+    list-style: none;
+    margin-top: 20px;
+}
+.task{
+    background-color: rgb(240, 235, 235);
+    box-shadow: 1px 4px 10px rgba(0, 0, 0, 0.234);
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px 0px;
+    outline: 1px rgba(0, 0, 0, 0.452) outset;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+img{
+    width: 25px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.delete{
+    width: 15px;
+}
+.task:hover img{
+    opacity: 1;
+}
+.done {
+    color: rgba(0, 0, 0, 0.37);
+    background-color: rgb(218, 216, 203);
+    text-decoration: line-through;
+}
+.done img{
+    opacity: 1px;
+}
+.filters{
+    padding: 0px 0px 0px 0px;
+    border-radius: 10px;
+    width: 450px;
+    margin: 0px auto 0px;
+    
+}
+.filters button{
+    padding: 10px;
+    cursor: pointer;
+    border: 1px rgba(0, 0, 0, 0.452) outset;;
+    border-radius: 10px 10px 0px 0px;
+    background-color: rgb(240, 235, 235);
+    height: 45px;
+}
+#all{
+    background-color: rgb(220, 193, 141);
+}
+#pending{
+    background-color: rgb(216, 125, 125);
+}
+#completed{
+    background-color: rgb(181, 220, 141);
+}

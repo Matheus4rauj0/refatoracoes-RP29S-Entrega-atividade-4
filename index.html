@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/95365.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barrio&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+      
+</head>
+<body>
+    <h1>Lista de tarefas</h1>
+    <div class="table">
+        <!– Corpo da página onde se encontra os filtros de tarefas e inserção de tarefas ->
+        <div class="filters">
+            <!– Filtros ->
+            <button id="all" onclick="filterTasks('all')">Todas</button>
+            <button id="pending" onclick="filterTasks('pending')">Pendentes</button>
+            <button id="completed" onclick="filterTasks('completed')">Concluídas</button>
+        </div>
+        <div class="container">
+            <!– Conteúdo da página com a caixa de texto e tarefas adicionadas ->
+            <input class="input-task" placeholder="Adicionar tarefa...">
+            <button class="button-add-task">+</button>
+            
+            <ul class="list-task">
+                <!– Espaço onde é adicionado as tarefas inseridas na caixa de texto ->
+            </ul>
+        </div>
+    </div>
+    <script src="main.js"></script>
+    <!– Link para arquivo .js onde estão os códigos para execução das ações de cada interação ->
+</body>
+</html>
