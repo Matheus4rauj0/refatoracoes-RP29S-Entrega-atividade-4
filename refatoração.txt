@@ -1,4 +1,11 @@
- O que foi melhorado:
+Nome:Matheus Araujo Batista RA:2372614
+
+Github com a refatoração: https://github.com/Matheus4rauj0/refatoracoes-RP29S-Entrega-atividade-4.git
+
+Este projeto é um Gerenciador de Tarefas simples baseado em JavaScript puro, que permite aos usuários adicionar, visualizar, marcar como concluídas e excluir tarefas. Ele utiliza o localStorage do navegador para salvar a lista de tarefas, garantindo que os itens permaneçam na página mesmo após a atualização. 
+ 
+
+O que foi melhorado:
 
 Extract Method → Separei funções pequenas como createTask, createTaskHTML e filterTasks para deixar o código mais modular.
 Extract Class → Criei a classe TaskManager para encapsular toda a lógica, reduzindo poluição no escopo global.
