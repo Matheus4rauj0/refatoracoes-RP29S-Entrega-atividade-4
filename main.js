@@ -26,11 +26,11 @@ function viewTask(){
 
     // Ação que imprime as tarefas conforme os itens e ordens em que foram adicionados
     myList.forEach((item, index) => {
+        // Filtro em que divide as tarefas entre "todas", "pendentes" e "completas"
         if (
             currentFilter === 'all' ||
             (currentFilter === 'pending' && !item.completed) ||
             (currentFilter === 'completed' && item.completed)
-            // Filtro em que divide as tarefas entre "todas", "pendentes" e "completas"
         ) {
         newLi = newLi + `
         <li class="task ${item.completed && "done"}">
@@ -39,8 +39,8 @@ function viewTask(){
                 <img class="delete" src="img/126468.png" alt="delete-task" onclick="deleteItem(${index})">
             </li>
             `}
-            // Código que adiciona a seção da nova tarefa inserida na página
     })
+    // Código que adiciona a seção da nova tarefa inserida na página
 
     allList.innerHTML = newLi
     // Transforma a lista em que foi adicionada uma nova tarefa como nova "Lista total"
