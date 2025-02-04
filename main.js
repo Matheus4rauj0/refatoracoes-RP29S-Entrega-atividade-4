@@ -59,7 +59,7 @@ function deleteItem(index){
 function checkItem(index){
     myList [index].completed = !myList [index].completed
 
-    viewTask()
+    viewTask();
 }
 // Função para manter os itens da lista na página mesmo após atualiza-la
 function UpdateTask(){
@@ -69,7 +69,9 @@ function UpdateTask(){
     myList = JSON.parse(localStorageTasks)
     // Reinsere os itens guardados no local da pagina devolta na lista
 
-    viewTask()
+    myList = localStorageTasks ? JSON.parse(localStorageTasks) : []
+    
+    viewTask();
 }
 
 let currentFilter = "all";
@@ -79,5 +81,5 @@ function filterTasks(filter) {
     viewTask();
 }
 
-UpdateTask()
+UpdateTask();
 button.addEventListener("click", addTask)
